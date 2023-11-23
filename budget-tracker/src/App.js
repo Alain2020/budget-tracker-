@@ -5,12 +5,12 @@ import { AppProvider } from './context/AppContext';
 import Budget from './components/Budget';
 import ExpenseTotal from './components/ExpenseTotal';
 import ExpenseList from './components/ExpenseList';
-import AddExpenseForm from './components/AddExpenseForm';
+import AddExpenseForm from './components/AddExpenseForm'; // Import the component
 import RemainingBudget from './components/Remaining';
-import BudgetAllocation from './components/BudgetAllocation'; // Import the new component
+import BudgetAllocation from './components/BudgetAllocation';
 
 const App = () => {
-  const [selectedCurrency, setSelectedCurrency] = useState('Pound'); // Add selectedCurrency state
+  const [selectedCurrency, setSelectedCurrency] = useState('£ Pound');
 
   return (
     <AppProvider>
@@ -27,7 +27,8 @@ const App = () => {
             <ExpenseTotal />
           </div>
         </div>
-        <h3 className='mt-3'>Expenses</h3>
+        {/* Remove the Expenses section */}
+        {/* <h3 className='mt-3'>Expenses</h3>
         <div className='row '>
           <div className='col-sm'>
             <ExpenseList />
@@ -38,8 +39,7 @@ const App = () => {
           <div className='col-sm'>
             <AddExpenseForm />
           </div>
-        </div>
-        {/* Add the new BudgetAllocation component */}
+        </div> */}
         <BudgetAllocation selectedCurrency={selectedCurrency} setSelectedCurrency={setSelectedCurrency} />
       </div>
     </AppProvider>

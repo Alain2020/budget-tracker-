@@ -1,5 +1,6 @@
 // BudgetAllocation.js
 import React from 'react';
+import CurrencyColumn from './CurrencyColumn'; // Import the new component
 
 const departments = [
   { name: 'Marketing', budget: 50 },
@@ -27,7 +28,7 @@ const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
           {departments.map((department, index) => (
             <tr key={index}>
               <td>{department.name}</td>
-              <td>{selectedCurrency === 'Pound' ? `£${department.budget}` : 'Converted Value'}</td>
+              <CurrencyColumn amount={department.budget} currency={selectedCurrency} />
               <td>
                 <button className='btn btn-success'>+</button>
               </td>
@@ -41,22 +42,6 @@ const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
           ))}
         </tbody>
       </table>
-      <div className='row'>
-        <div className='col-sm'>
-          <label htmlFor='currency'>Currency</label>
-          <select
-            id='currency'
-            className='form-control'
-            value={selectedCurrency}
-            onChange={(e) => setSelectedCurrency(e.target.value)}
-          >
-            <option value='Pound'>£ Pound</option>
-            <option value='Dollar'>$ Dollar</option>
-            <option value='Euro'>€ Euro</option>
-            <option value='Rupee'>₹ Rupee</option>
-          </select>
-        </div>
-      </div>
       <div className='row mt-3'>
         <div className='col-sm'>
           <label htmlFor='department'>Department</label>
