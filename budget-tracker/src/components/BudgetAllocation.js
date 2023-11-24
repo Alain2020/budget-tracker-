@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import CurrencyColumn from './CurrencyColumn';
 
 const initialDepartments = [
-  { name: 'Marketing', budget: 50000 },
-  { name: 'Finance', budget: 300000 },
-  { name: 'Sales', budget: 70000 },
-  { name: 'Human Resource', budget: 40000 },
-  { name: 'IT', budget: 500000 },
+  { name: 'Marketing', budget: 50 },
+  { name: 'Finance', budget: 300 },
+  { name: 'Sales', budget: 70 },
+  { name: 'Human Resource', budget: 40 },
+  { name: 'IT', budget: 500 },
 ];
 
 const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
@@ -18,11 +18,6 @@ const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
     console.log('Action:', action);
     console.log('Cost:', cost);
   };
-
-  const formattedDepartments = initialDepartments.map((department) => ({
-    ...department,
-    budget: department.budget.toLocaleString('en-US', { style: 'currency', currency: 'USD' }),
-  }));
 
   return (
     <div>
@@ -38,10 +33,12 @@ const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
           </tr>
         </thead>
         <tbody>
-          {formattedDepartments.map((department, index) => (
+          {initialDepartments.map((department, index) => (
             <tr key={index}>
               <td>{department.name}</td>
-              <CurrencyColumn amount={department.budget} currency={selectedCurrency} />
+              <td>
+                <CurrencyColumn amount={department.budget} currency={selectedCurrency} />
+              </td>
               <td>
                 <button className='btn btn-success'>+</button>
               </td>
