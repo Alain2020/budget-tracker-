@@ -1,16 +1,29 @@
-// BudgetAllocation.js
-import React from 'react';
-import CurrencyColumn from './CurrencyColumn'; // Import the new component
+import React, { useState } from 'react';
+import CurrencyColumn from './CurrencyColumn';
 
-const departments = [
-  { name: 'Marketing', budget: 50 },
-  { name: 'Finance', budget: 300 },
-  { name: 'Sales', budget: 70 },
-  { name: 'Human Resource', budget: 40 },
-  { name: 'IT', budget: 500 },
+const initialDepartments = [
+  { name: 'Marketing', budget: 50000 },
+  { name: 'Finance', budget: 300000 },
+  { name: 'Sales', budget: 70000 },
+  { name: 'Human Resource', budget: 40000 },
+  { name: 'IT', budget: 500000 },
 ];
 
 const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
+  const [action, setAction] = useState('Add');
+  const [cost, setCost] = useState('');
+
+  const submitEvent = () => {
+    // Implement your logic for handling the Save button click event
+    console.log('Action:', action);
+    console.log('Cost:', cost);
+  };
+
+  const formattedDepartments = initialDepartments.map((department) => ({
+    ...department,
+    budget: department.budget.toLocaleString('en-US', { style: 'currency', currency: 'USD' }),
+  }));
+
   return (
     <div>
       <h3>Budget Allocation</h3>
@@ -25,7 +38,7 @@ const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
           </tr>
         </thead>
         <tbody>
-          {departments.map((department, index) => (
+          {formattedDepartments.map((department, index) => (
             <tr key={index}>
               <td>{department.name}</td>
               <CurrencyColumn amount={department.budget} currency={selectedCurrency} />
@@ -42,28 +55,61 @@ const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
           ))}
         </tbody>
       </table>
-      <div className='row mt-3'>
-        <div className='col-sm'>
-          <label htmlFor='department'>Department</label>
-          <select className='form-control'>
-            <option>Choose</option>
-            {departments.map((department, index) => (
+
+      <div className='row'>
+        <div className='input-group mb-3' style={{ marginLeft: '2rem' }}>
+          <div className='input-group-prepend'>
+            <label className='input-group-text' htmlFor='inputGroupSelect01'>
+              Department
+            </label>
+          </div>
+          <select
+            className='custom-select'
+            id='inputGroupSelect01'
+            onChange={(event) => setAction(event.target.value)}
+          >
+            <option defaultValue>Choose</option>
+            {initialDepartments.map((department, index) => (
               <option key={index}>{department.name}</option>
             ))}
           </select>
-        </div>
-        <div className='col-sm'>
-          <label htmlFor='allocation'>Allocation</label>
-          <select className='form-control'>
-            <option>Add</option>
+          <div className='input-group-prepend' style={{ marginLeft: '2rem' }}>
+            <label className='input-group-text' htmlFor='inputGroupSelect02'>
+              Allocation
+            </label>
+          </div>
+          <select
+            className='custom-select'
+            id='inputGroupSelect02'
+            onChange={(event) => setAction(event.target.value)}
+          >
+            <option defaultValue value='Add'>
+              Add
+            </option>
+            <option value='Reduce'>Reduce</option>
           </select>
-        </div>
-        <div className='col-sm'>
-          <label htmlFor='amount'>£</label>
-          <input type='number' className='form-control' />
-        </div>
-        <div className='col-sm'>
-          <button className='btn btn-primary'>Save</button>
+          <div className='form-group mt-lg-0 mt-4 align-items-center d-flex'>
+            <div className='col-sm-1 d-flex align-items-center'>
+              <label
+                htmlFor='amount'
+                className='form-label'
+                style={{ marginLeft: '2rem', marginRight: '0.5rem' }}
+              >
+                £
+              </label>
+            </div>
+            <input
+              className='ms-5 input-group-prepend p-1'
+              required='required'
+              type='number'
+              id='cost'
+              value={cost}
+              onChange={(event) => setCost(event.target.value)}
+            ></input>
+            <button className='btn btn-primary' onClick={submitEvent}>
+              Save
+            </button>
+          </div>
         </div>
       </div>
     </div>
