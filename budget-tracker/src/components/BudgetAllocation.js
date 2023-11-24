@@ -40,13 +40,22 @@ const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
                 <CurrencyColumn amount={department.budget} currency={selectedCurrency} />
               </td>
               <td>
-                <button className='btn btn-success'>+</button>
+                <button className='btn btn-success' style={{ fontSize: '1.5rem', borderRadius: '70%' }}>
+                  +
+                </button>
               </td>
               <td>
-                <button className='btn btn-danger'>-</button>
+                <button className='btn btn-danger' style={{ fontSize: '1.5rem', borderRadius: '70%' }}>
+                  -
+                </button>
               </td>
               <td>
-                <button className='btn btn-warning'>x</button>
+                <button
+                  className='btn btn-dark'
+                  style={{ fontSize: '1.5rem', borderRadius: '70%', color: 'white' }}
+                >
+                  x
+                </button>
               </td>
             </tr>
           ))}
