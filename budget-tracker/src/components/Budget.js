@@ -14,7 +14,7 @@ const Budget = () => {
   };
 
   return (
-    <div className="alert alert-secondary p-4">
+    <div className="alert alert-secondary p-3">
       <div className="d-flex align-items-center">
         <span className="mr-2">Budget: £</span>
         <input
