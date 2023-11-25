@@ -1,26 +1,30 @@
 import React, { useState, useContext } from 'react';
-import ViewBudget from './ViewBudget';
 import { AppContext } from '../context/AppContext';
 
 const Budget = () => {
   const { budget, dispatch } = useContext(AppContext);
-  const [isEditing, setIsEditing] = useState(false);
+  const [newBudget, setNewBudget] = useState(budget);
 
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleSaveClick = (value) => {
+  const handleBudgetChange = (e) => {
+    setNewBudget(e.target.value);
     dispatch({
       type: 'SET_BUDGET',
-      payload: value,
+      payload: e.target.value,
     });
-    setIsEditing(false);
   };
 
   return (
     <div className="alert alert-secondary p-4">
-      <span>Budget: £{budget}</span>
+      <div className="d-flex align-items-center">
+        <span className="mr-2">Budget: £</span>
+        <input
+          type="number"
+          value={newBudget}
+          onChange={handleBudgetChange}
+          className="form-control"
+          style={{ maxWidth: '80px' }} // Adjust the maximum width as needed
+        />
+      </div>
     </div>
   );
 };
