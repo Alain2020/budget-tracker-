@@ -8,6 +8,7 @@ import ExpenseList from './components/ExpenseList';
 import AddExpenseForm from './components/AddExpenseForm'; // Import the component
 import RemainingBudget from './components/Remaining';
 import BudgetAllocation from './components/BudgetAllocation';
+import Currency from './components/Currency';
 
 const App = () => {
   const [selectedCurrency, setSelectedCurrency] = useState('£ Pound');
@@ -25,6 +26,9 @@ const App = () => {
           </div>
           <div className='col-sm'>
             <ExpenseTotal />
+          </div>
+          <div className=' col-sm'>
+          <Currency />
           </div>
         </div>
         {/* Remove the Expenses section */}
