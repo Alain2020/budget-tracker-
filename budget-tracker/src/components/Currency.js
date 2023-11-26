@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 
-const Currency = () => {
+const Currency = ({ onCurrencyChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState("£ Pound");
-  const currencies = ["$ Dollar","£ Pound", "€ Euro", "₹ Rupee"];
+  const currencies = ["$ Dollar", "£ Pound", "€ Euro", "₹ Rupee"];
 
   const handleCurrencyChange = (currency) => {
     setSelectedCurrency(currency);
     setIsOpen(false);
+    onCurrencyChange(currency);
   };
 
   return (

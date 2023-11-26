@@ -9,12 +9,11 @@ const initialDepartments = [
   { name: 'IT', budget: 500 },
 ];
 
-const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
+const BudgetAllocation = ({ selectedCurrency }) => {
   const [action, setAction] = useState('Add');
   const [cost, setCost] = useState('');
 
   const submitEvent = () => {
-    // Implement your logic for handling the Save button click event
     console.log('Action:', action);
     console.log('Cost:', cost);
   };
@@ -74,9 +73,13 @@ const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
             id='inputGroupSelect01'
             onChange={(event) => setAction(event.target.value)}
           >
-            <option defaultValue>Choose</option>
+            <option defaultValue value='Choose'>
+              Choose
+            </option>
             {initialDepartments.map((department, index) => (
-              <option key={index}>{department.name}</option>
+              <option key={index} value={department.name}>
+                {department.name}
+              </option>
             ))}
           </select>
           <div className='input-group-prepend' style={{ marginLeft: '2rem' }}>
@@ -90,7 +93,7 @@ const BudgetAllocation = ({ selectedCurrency, setSelectedCurrency }) => {
             onChange={(event) => setAction(event.target.value)}
           >
             <option defaultValue value='Add'>
-              Add
+                 Add
             </option>
             <option value='Reduce'>Reduce</option>
           </select>
