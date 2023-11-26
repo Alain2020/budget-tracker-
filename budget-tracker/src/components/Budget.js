@@ -22,7 +22,7 @@ const Budget = () => {
           value={newBudget}
           onChange={handleBudgetChange}
           className="form-control"
-          style={{ maxWidth: '80px' }} // Adjust the maximum width as needed
+          style={{ maxWidth: '180px' }} // Adjust the maximum width as needed
         />
       </div>
     </div>

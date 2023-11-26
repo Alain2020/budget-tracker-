@@ -1,3 +1,4 @@
+// BudgetAllocation.js
 import React, { useState } from 'react';
 import CurrencyColumn from './CurrencyColumn';
 
@@ -39,19 +40,19 @@ const BudgetAllocation = ({ selectedCurrency }) => {
                 <CurrencyColumn amount={department.budget} currency={selectedCurrency} />
               </td>
               <td>
-                <button className='btn btn-success' style={{ fontSize: '1.5rem', borderRadius: '70%' }}>
+                <button className='btn btn-success' style={{ fontSize: '1.2rem', borderRadius: '70%' }}>
                   +
                 </button>
               </td>
               <td>
-                <button className='btn btn-danger' style={{ fontSize: '1.5rem', borderRadius: '70%' }}>
+                <button className='btn btn-danger' style={{ fontSize: '1.2rem', borderRadius: '70%' }}>
                   -
                 </button>
               </td>
               <td>
                 <button
                   className='btn btn-dark'
-                  style={{ fontSize: '1.5rem', borderRadius: '70%', color: 'white' }}
+                  style={{ fontSize: '1.2rem', borderRadius: '70%', color: 'white' }}
                 >
                   x
                 </button>
@@ -73,13 +74,9 @@ const BudgetAllocation = ({ selectedCurrency }) => {
             id='inputGroupSelect01'
             onChange={(event) => setAction(event.target.value)}
           >
-            <option defaultValue value='Choose'>
-              Choose
-            </option>
+            <option defaultValue>Choose</option>
             {initialDepartments.map((department, index) => (
-              <option key={index} value={department.name}>
-                {department.name}
-              </option>
+              <option key={index}>{department.name}</option>
             ))}
           </select>
           <div className='input-group-prepend' style={{ marginLeft: '2rem' }}>
@@ -93,7 +90,7 @@ const BudgetAllocation = ({ selectedCurrency }) => {
             onChange={(event) => setAction(event.target.value)}
           >
             <option defaultValue value='Add'>
-                 Add
+              Add
             </option>
             <option value='Reduce'>Reduce</option>
           </select>

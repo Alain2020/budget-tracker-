@@ -1,10 +1,11 @@
+// CurrencyColumn.js
 import React from 'react';
 
 const CurrencyColumn = ({ amount, currency }) => {
   return (
-    <div>
+    <span>
       {currency} {amount}
-    </div>
+    </span>
   );
 };
 
