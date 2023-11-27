@@ -15,6 +15,7 @@ const BudgetAllocation = ({ selectedCurrency }) => {
   const [cost, setCost] = useState('');
 
   const submitEvent = () => {
+    // Implement your logic for handling the Save button click event
     console.log('Action:', action);
     console.log('Cost:', cost);
   };
@@ -40,19 +41,19 @@ const BudgetAllocation = ({ selectedCurrency }) => {
                 <CurrencyColumn amount={department.budget} currency={selectedCurrency} />
               </td>
               <td>
-                <button className='btn btn-success' style={{ fontSize: '1.2rem', borderRadius: '70%' }}>
+                <button className='btn btn-success' style={{ fontSize: '1.5rem', borderRadius: '70%' }}>
                   +
                 </button>
               </td>
               <td>
-                <button className='btn btn-danger' style={{ fontSize: '1.2rem', borderRadius: '70%' }}>
+                <button className='btn btn-danger' style={{ fontSize: '1.5rem', borderRadius: '70%' }}>
                   -
                 </button>
               </td>
               <td>
                 <button
                   className='btn btn-dark'
-                  style={{ fontSize: '1.2rem', borderRadius: '70%', color: 'white' }}
+                  style={{ fontSize: '1.5rem', borderRadius: '70%', color: 'white' }}
                 >
                   x
                 </button>
@@ -101,7 +102,7 @@ const BudgetAllocation = ({ selectedCurrency }) => {
                 className='form-label'
                 style={{ marginLeft: '2rem', marginRight: '0.5rem' }}
               >
-                £
+                {selectedCurrency.substring(0, 1)}
               </label>
             </div>
             <input
