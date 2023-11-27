@@ -13,11 +13,32 @@ const initialDepartments = [
 const BudgetAllocation = ({ selectedCurrency }) => {
   const [action, setAction] = useState('Add');
   const [cost, setCost] = useState('');
+  const [departments, setDepartments] = useState(initialDepartments);
 
-  const submitEvent = () => {
-    // Implement your logic for handling the Save button click event
-    console.log('Action:', action);
-    console.log('Cost:', cost);
+  const handleAction = (action, type, index) => {
+    const updatedDepartments = [...departments];
+
+    switch (type) {
+      case 'Increase':
+        updatedDepartments[index].budget += 10;
+        break;
+      case 'Decrease':
+        updatedDepartments[index].budget -= 1;
+        break;
+      case 'Delete':
+        updatedDepartments.splice(index, 1);
+        break;
+      case 'Save':
+        // Implement your logic for handling the Save button click event
+        console.log('Action:', action);
+        console.log('Type:', type);
+        console.log('Cost:', cost);
+        break;
+      default:
+        break;
+    }
+
+    setDepartments(updatedDepartments);
   };
 
   return (
@@ -34,26 +55,35 @@ const BudgetAllocation = ({ selectedCurrency }) => {
           </tr>
         </thead>
         <tbody>
-          {initialDepartments.map((department, index) => (
+          {departments.map((department, index) => (
             <tr key={index}>
               <td>{department.name}</td>
               <td>
                 <CurrencyColumn amount={department.budget} currency={selectedCurrency} />
               </td>
               <td>
-                <button className='btn btn-success' style={{ fontSize: '1.5rem', borderRadius: '70%' }}>
+                <button
+                  className='btn btn-success'
+                  style={{ fontSize: '1.2rem', borderRadius: '70%' }}
+                  onClick={() => handleAction(action, 'Increase', index)}
+                >
                   +
                 </button>
               </td>
               <td>
-                <button className='btn btn-danger' style={{ fontSize: '1.5rem', borderRadius: '70%' }}>
+                <button
+                  className='btn btn-danger'
+                  style={{ fontSize: '1.2rem', borderRadius: '70%' }}
+                  onClick={() => handleAction(action, 'Decrease', index)}
+                >
                   -
                 </button>
               </td>
               <td>
                 <button
                   className='btn btn-dark'
-                  style={{ fontSize: '1.5rem', borderRadius: '70%', color: 'white' }}
+                  style={{ fontSize: '1.2rem', borderRadius: '70%', color: 'white' }}
+                  onClick={() => handleAction(action, 'Delete', index)}
                 >
                   x
                 </button>
@@ -76,7 +106,7 @@ const BudgetAllocation = ({ selectedCurrency }) => {
             onChange={(event) => setAction(event.target.value)}
           >
             <option defaultValue>Choose</option>
-            {initialDepartments.map((department, index) => (
+            {departments.map((department, index) => (
               <option key={index}>{department.name}</option>
             ))}
           </select>
@@ -102,7 +132,7 @@ const BudgetAllocation = ({ selectedCurrency }) => {
                 className='form-label'
                 style={{ marginLeft: '2rem', marginRight: '0.5rem' }}
               >
-                {selectedCurrency.substring(0, 1)}
+                {selectedCurrency.split(' ')[0]}
               </label>
             </div>
             <input
@@ -112,8 +142,11 @@ const BudgetAllocation = ({ selectedCurrency }) => {
               id='cost'
               value={cost}
               onChange={(event) => setCost(event.target.value)}
-            ></input>
-            <button className='btn btn-primary' onClick={submitEvent}>
+            />
+            <button
+              className='btn btn-primary'
+              onClick={() => handleAction(action, 'Save')}
+            >
               Save
             </button>
           </div>
