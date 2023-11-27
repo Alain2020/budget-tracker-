@@ -62,32 +62,32 @@ const BudgetAllocation = ({ selectedCurrency }) => {
                 <CurrencyColumn amount={department.budget} currency={selectedCurrency} />
               </td>
               <td>
-                <button
-                  className='btn btn-success'
-                  style={{ fontSize: '1.2rem', borderRadius: '70%' }}
-                  onClick={() => handleAction(action, 'Increase', index)}
-                >
-                  +
-                </button>
-              </td>
-              <td>
-                <button
-                  className='btn btn-danger'
-                  style={{ fontSize: '1.2rem', borderRadius: '70%' }}
-                  onClick={() => handleAction(action, 'Decrease', index)}
-                >
-                  -
-                </button>
-              </td>
-              <td>
-                <button
-                  className='btn btn-dark'
-                  style={{ fontSize: '1.2rem', borderRadius: '70%', color: 'white' }}
-                  onClick={() => handleAction(action, 'Delete', index)}
-                >
-                  x
-                </button>
-              </td>
+  <button
+    className='btn btn-success'
+    style={{ fontSize: '1.2rem', borderRadius: '70%', fontWeight: 'bold' }}
+    onClick={() => handleAction(action, 'Increase', index)}
+  >
+    +
+  </button>
+</td>
+<td>
+  <button
+    className='btn btn-danger'
+    style={{ fontSize: '1.2rem', borderRadius: '70%', fontWeight: 'bold' }}
+    onClick={() => handleAction(action, 'Decrease', index)}
+  >
+    -
+  </button>
+</td>
+<td>
+  <button
+    className='btn btn-dark'
+    style={{ fontSize: '1.2rem', borderRadius: '70%', color: 'white', fontWeight: 'bold' }}
+    onClick={() => handleAction(action, 'Delete', index)}
+  >
+    x
+  </button>
+</td>
             </tr>
           ))}
         </tbody>
